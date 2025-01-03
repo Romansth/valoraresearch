@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet"> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valora Research - Equity Insights</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <!-- <img src="logo.PNG" alt="Valora Research Logo" class="logo"> -->
+        <a href="#" class="brand-logo">Valora Research</a>
+      </div>
+      <div class="nav-right">
+        <!-- Add more links if needed -->
+        <a href="#reports" class="nav-link">Reports</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Hero / Company Introduction -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Independent Research for Informed Decisions</h2>
+      <p>
+        At Valora Research, we specialize in delivering comprehensive insights 
+        and analyses of the equity markets. Our mission is to empower 
+        institutions, investors, and businesses with actionable data 
+        that drives confident decision-making.
+      </p>
+      <a href="#reports" class="cta-button">View Our Latest Reports</a>
+    </div>
+  </section>
+
+  <!-- Reports Section -->
+  <section id="reports" class="reports-section">
+    <h2>Latest Reports</h2>
+    <div id="report-list" class="report-list">
+      <!-- Reports will be dynamically loaded here by JavaScript -->
+    </div>
+    <button id="loadMoreBtn" class="load-more-button" style="display: none;">
+      Load More
+    </button>
+  </section>
+
+  <!-- Contact / Footer Section -->
+  <section id="contact" class="contact-section">
+    <!-- Optional contact info or form can go here -->
+  </section>
+
+  <footer>
+    <p><strong>Valora Research</strong> | Kathmandu, Nepal</p>
+    <p><a href="mailto:info@valoraresearch.com">info@valoraresearch.com</a></p>
+    <p>&copy; 2025 Valora Research. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript for "Load More" functionality -->
+  <script>
+    // Example data for 8 reports; you can have as many as needed
+    const reportsData = [
+      {
+        title: "Equity Market Trends Q4 2024",
+        date: "December 15, 2024",
+        description: "A detailed analysis of equity market trends for Q4 2024.",
+        file: "reports/equity-market-trends-q4-2024.pdf"
+      },
+      {
+        title: "Global Equity Outlook 2025",
+        date: "January 2, 2025",
+        description: "An extensive outlook on global equity performance for the coming year.",
+        file: "reports/global-equity-outlook-2025.pdf"
+      },
+      {
+        title: "Sector Spotlight: Technology Q1 2025",
+        date: "January 10, 2025",
+        description: "Insights on the tech sector's performance, challenges, and opportunities.",
+        file: "reports/sector-spotlight-tech-q1-2025.pdf"
+      },
+      {
+        title: "Emerging Markets Focus",
+        date: "February 5, 2025",
+        description: "Comprehensive overview of emerging markets with growth potential.",
+        file: "reports/emerging-markets-focus-2025.pdf"
+      },
+      {
+        title: "Sustainability & ESG Trends",
+        date: "February 20, 2025",
+        description: "Exploring the rise of ESG criteria and sustainable investing.",
+        file: "reports/esg-trends-2025.pdf"
+      },
+      {
+        title: "Mid-Year Equity Review 2025",
+        date: "June 15, 2025",
+        description: "Mid-year analysis of global equities and market corrections.",
+        file: "reports/mid-year-equity-review-2025.pdf"
+      },
+      {
+        title: "Financial Sector Outlook 2025",
+        date: "July 1, 2025",
+        description: "A deep dive into the financial services industry heading into late 2025.",
+        file: "reports/financial-sector-outlook-2025.pdf"
+      },
+      {
+        title: "Global Economy Watch",
+        date: "August 12, 2025",
+        description: "A macroeconomic overview of global markets, central bank policies, and more.",
+        file: "reports/global-economy-watch-2025.pdf"
+      }
+    ];
+
+    let currentIndex = 0;
+    const batchSize = 3; // load 4 reports at a time
+    const reportList = document.getElementById('report-list');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+    // Function to render 4 more reports
+    function loadMoreReports() {
+      const endIndex = currentIndex + batchSize;
+      const itemsToLoad = reportsData.slice(currentIndex, endIndex);
+
+      itemsToLoad.forEach(report => {
+        const reportItem = document.createElement('div');
+        reportItem.classList.add('report-item');
+        reportItem.innerHTML = `
+          <h3>${report.title}</h3>
+          <p>Published on: ${report.date}</p>
+          <p>${report.description}</p>
+          <a href="${report.file}" download class="download-button">Download</a>
+        `;
+        reportList.appendChild(reportItem);
+      });
+
+      currentIndex = endIndex;
+
+      // Hide the "Load More" button if we've loaded all
+      if (currentIndex >= reportsData.length) {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+
+    // Initial load
+    function init() {
+      if (reportsData.length > 0) {
+        loadMoreReports(); // load first 4
+      }
+      // Show the button if there's more to load
+      if (currentIndex < reportsData.length) {
+        loadMoreBtn.style.display = 'inline-block';
+      }
+    }
+
+    // Initialize the page
+    init();
+
+    // Event listener for the button
+    loadMoreBtn.addEventListener('click', loadMoreReports);
+  </script>
+</body>
+</html>
