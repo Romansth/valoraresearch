@@ -296,7 +296,7 @@ export const MARKETING_DATA = {
       {
         icon: Mail,
         title: "Email Us",
-        value: "david.wang@valoraresearch.com",
+        value: "info@valoraresearch.com",
       },
       {
         icon: Phone,
