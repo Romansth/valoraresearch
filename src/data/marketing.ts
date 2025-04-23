@@ -296,12 +296,12 @@ export const MARKETING_DATA = {
       {
         icon: Mail,
         title: "Email Us",
-        value: "info@valoraresearch.com",
+        value: "david.wang@valoraresearch.com",
       },
       {
         icon: Phone,
         title: "Phone",
-        value: "+1 (555) 123-4567",
+        value: "+1 (201) 234-4945",
       },
       {
         icon: MapPin,
